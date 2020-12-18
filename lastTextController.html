@@ -51,14 +51,14 @@
     </style>
 
     <div class="box">
-        <div id="title">Let's </div>
+        <div id="title">Let's play Word Chain</div>
         
         <div id="past-content"></div>
 
         <section>
-            <input type="text" id="input-field" value="wow">
+            <input type="text" id="input-field" value="">
 
-            <input type="button" id="input-button" value="입력">
+            <input type="button" id="input-button" value="gogo">
         </section>
         
     </div>
@@ -67,14 +67,28 @@
 
         let button = document.getElementById('input-button').addEventListener('click',buttonClicked);
         
-        let first = 0;
         let count = 0;
         let wordCollection = [];
         function buttonClicked() {
             let inputText = document.getElementById('input-field').value;
-            console.log(inputText);
 
+            if(count == 0) {
+                wordCollection[0] = inputText;
+                count++;
+            } else if(count > 0){
+                let length = wordCollection.length;
+                let lastWord = wordCollection[count-1].substring(length);
+                let firstWord = inputText.substring(0,1);
+                console.log(lastWord);
+                console.log(firstWord);
 
+                if(lastWord === firstWord) {
+                    wordCollection[count] = inputText;
+                    count++;
+                } else {
+                    return 'It is Wrong!!';
+                }
+            }
         }
     </script>
 </body>
