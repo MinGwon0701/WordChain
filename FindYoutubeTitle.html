@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Repeat</title>
+</head>
+<body>
+    <script>
+        //유튜브 제목 찾기
+        let title = document.querySelectorAll('#video-title');
+        let titleList = [];
+        for(let i = 0; i < title.length; i++){
+            console.log(title[i].lastChild);
+            titleList[i] = title[i].lastChild;
+        }
+        let time = document.querySelectorAll('ytd-video-meta-block>#metadata>#metadata-line>span:nth-of-type(2)');
+        let timeList = [];
+        for(let i = 0; i < time.length; i++){
+            // console.log(time[i].lastChild);
+            timeList[i] = time[i].lastChild;
+        }
+
+        for (let i = 0; i < titleList.length; i++) {
+            console.group('start');
+            console.log(titleList[i]);
+            console.log(timeList[i]);
+            console.groupEnd();
+        }
+    </script>
+</body>
+</html>
