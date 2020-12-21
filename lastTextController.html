@@ -59,6 +59,10 @@
         #past-content {
             margin: 20px 0;
         }
+
+        #result {
+            text-align: center;
+        }
     </style>
 
     <div class="box">
@@ -76,6 +80,7 @@
             </div>
         </section>
 
+        <p id="result"></p>
     </div>
 
     <script>
@@ -93,13 +98,12 @@
                 let lastWord = wordCollection[count - 1].substring(length - 1, length); // get lastWord
                 let firstWord = inputText.substring(0, 1);  //get firstWord
 
-                console.log(wordCollection[count - 1] + '=>' + lastWord);
-                console.log(inputText + '=>' + firstWord);
-
                 if (lastWord === firstWord) {
                     wordCollection[count] = inputText;
                     count++;
+                    result(1);
                 } else {
+                    result(0);
                     return console.log('It is wrong word. Try it again!');
                 }
             }
@@ -121,6 +125,18 @@
                 let text = document.createTextNode(word + ' ');
                 pastContent.appendChild(text);
             });
+        }
+
+        function result(index) {
+            let result = document.getElementById('result');
+
+            if(index == 1) {
+                result.innerHTML = 'perfect!!!!';
+                result.setAttribute('color', 'blue');
+            } else {
+                result.innerHTML = 'It is wrong word. Try it again!'
+                result.setAttribute('color', 'red');
+            }
         }
 
         function textClear() {
