@@ -26,7 +26,7 @@
             font-weight: bold;
             text-align: center;
         }
-        
+
         section {
             width: 100%;
             display: flex;
@@ -46,7 +46,8 @@
             height: 25px;
         }
 
-        #input-button, #clear-button {
+        #input-button,
+        #clear-button {
             width: 50px;
             height: 25px;
             border: none;
@@ -72,7 +73,7 @@
             <div id="past-content"></div>
 
             <div id="input-box">
-                <input type="text" id="input-field" >
+                <input type="text" id="input-field">
 
                 <input type="button" id="input-button" value="gogo">
 
@@ -84,7 +85,7 @@
     </div>
 
     <script>
-        
+
         let combo = 0;
         let count = 0;
         let wordCollection = [];
@@ -132,7 +133,7 @@
         function result(index) {
             let result = document.getElementById('result');
 
-            if(index == 1) {
+            if (index == 1) {
                 result.innerHTML = 'perfect!!! combo: ' + combo;
                 result.setAttribute('color', 'blue');
             } else {
