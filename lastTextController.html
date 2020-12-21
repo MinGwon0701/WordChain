@@ -79,9 +79,7 @@
     </div>
 
     <script>
-
-        document.getElementById('input-button').addEventListener('click', buttonClicked);
-
+        
         let count = 0;
         let wordCollection = [];
         function buttonClicked() {
@@ -109,6 +107,12 @@
             textClear();    //clear text
         }
 
+        function allClear() {
+            wordCollection = [];
+            textClear();
+            document.getElementById('past-content').innerHTML = '';
+        }
+
         function wordShow(wordCollection) {
             let pastContent = document.getElementById('past-content');
             pastContent.innerHTML = ''; // past-content clear
@@ -122,6 +126,9 @@
         function textClear() {
             document.getElementById('input-field').value = '';
         }
+
+        document.getElementById('input-button').addEventListener('click', buttonClicked);
+        document.getElementById('clear-button').addEventListener('click', allClear);
 
     </script>
 </body>
