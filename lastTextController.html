@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>lastTextController</title>
 </head>
+
 <body>
     <style>
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;   
+            box-sizing: border-box;
         }
-        
+
         .box {
             width: 1200px;
             margin: 0 auto;
@@ -52,7 +54,7 @@
 
     <div class="box">
         <div id="title">Let's play Word Chain</div>
-        
+
         <div id="past-content"></div>
 
         <section>
@@ -60,36 +62,56 @@
 
             <input type="button" id="input-button" value="gogo">
         </section>
-        
+
     </div>
 
     <script>
 
-        let button = document.getElementById('input-button').addEventListener('click',buttonClicked);
-        
+        let button = document.getElementById('input-button').addEventListener('click', buttonClicked);
+
         let count = 0;
         let wordCollection = [];
         function buttonClicked() {
             let inputText = document.getElementById('input-field').value;
 
-            if(count == 0) {
+            if (count == 0) {
                 wordCollection[0] = inputText;
                 count++;
-            } else if(count > 0){
-                let length = wordCollection.length;
-                let lastWord = wordCollection[count-1].substring(length);
-                let firstWord = inputText.substring(0,1);
-                console.log(lastWord);
-                console.log(firstWord);
+            } else if (count > 0) {
+                let length = wordCollection[count - 1].length;  //wordCollection length
+                let lastWord = wordCollection[count - 1].substring(length - 1, length); // get lastWord
+                let firstWord = inputText.substring(0, 1);  //get firstWord
 
-                if(lastWord === firstWord) {
+                console.log(wordCollection[count - 1] + '=>' + lastWord);
+                console.log(inputText + '=>' + firstWord);
+
+                if (lastWord === firstWord) {
                     wordCollection[count] = inputText;
                     count++;
                 } else {
-                    return 'It is Wrong!!';
+                    return console.log('It is wrong word. Try it again!');
                 }
             }
+            wordShow(wordCollection);    //print text on screen
+            textClear();    //clear text
         }
+
+        function wordShow(wordCollection) {
+            let pastContent = document.getElementById('past-content');
+            
+            pastContent.innerHTML = ''; // past-content clear
+            wordCollection.forEach(word => {
+                let text = document.createTextNode(word + ' ');
+                pastContent.appendChild(text);
+            });
+        }
+
+        function textClear() {
+            
+            document.getElementById('input-field').value = '';
+        }
+
     </script>
 </body>
+
 </html>
