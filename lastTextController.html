@@ -85,6 +85,7 @@
 
     <script>
         
+        let combo = 0;
         let count = 0;
         let wordCollection = [];
         function buttonClicked() {
@@ -101,10 +102,11 @@
                 if (lastWord === firstWord) {
                     wordCollection[count] = inputText;
                     count++;
+                    combo++;
                     result(1);
                 } else {
                     result(0);
-                    return console.log('It is wrong word. Try it again!');
+                    return 0;
                 }
             }
             wordShow(wordCollection);    //print text on screen
@@ -117,7 +119,7 @@
             document.getElementById('past-content').innerHTML = '';
         }
 
-        function wordShow(wordCollection) {
+        function wordShow() {
             let pastContent = document.getElementById('past-content');
             pastContent.innerHTML = ''; // past-content clear
 
@@ -131,9 +133,10 @@
             let result = document.getElementById('result');
 
             if(index == 1) {
-                result.innerHTML = 'perfect!!!!';
+                result.innerHTML = 'perfect!!! combo: ' + combo;
                 result.setAttribute('color', 'blue');
             } else {
+                combo == 0;
                 result.innerHTML = 'It is wrong word. Try it again!'
                 result.setAttribute('color', 'red');
             }
