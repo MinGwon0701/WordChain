@@ -16,21 +16,26 @@
         }
 
         .box {
-            width: 1200px;
+            width: 500px;
             margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
 
         #title {
             margin: 20px 0;
             font-size: 35px;
             font-weight: bold;
+            text-align: center;
+        }
+        
+        section {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        section:nth-of-type(1) {
-            width: 280px;
+        #input-box {
+            width: 330px;
             display: flex;
             align-items: center;
             justify-content: space-around;
@@ -41,7 +46,7 @@
             height: 25px;
         }
 
-        #input-button {
+        #input-button, #clear-button {
             width: 50px;
             height: 25px;
             border: none;
@@ -50,24 +55,32 @@
             background-color: rgba(0, 110, 255, 0.918);
             cursor: pointer;
         }
+
+        #past-content {
+            margin: 20px 0;
+        }
     </style>
 
     <div class="box">
         <div id="title">Let's play Word Chain</div>
 
-        <div id="past-content"></div>
-
         <section>
-            <input type="text" id="input-field" value="">
+            <div id="past-content"></div>
 
-            <input type="button" id="input-button" value="gogo">
+            <div id="input-box">
+                <input type="text" id="input-field" >
+
+                <input type="button" id="input-button" value="gogo">
+
+                <input type="button" id="clear-button" value="clear">
+            </div>
         </section>
 
     </div>
 
     <script>
 
-        let button = document.getElementById('input-button').addEventListener('click', buttonClicked);
+        document.getElementById('input-button').addEventListener('click', buttonClicked);
 
         let count = 0;
         let wordCollection = [];
@@ -98,8 +111,8 @@
 
         function wordShow(wordCollection) {
             let pastContent = document.getElementById('past-content');
-            
             pastContent.innerHTML = ''; // past-content clear
+
             wordCollection.forEach(word => {
                 let text = document.createTextNode(word + ' ');
                 pastContent.appendChild(text);
@@ -107,7 +120,6 @@
         }
 
         function textClear() {
-            
             document.getElementById('input-field').value = '';
         }
 
